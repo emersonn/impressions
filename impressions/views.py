@@ -17,6 +17,13 @@ def shutdown_session(exception=None):
     db.session.remove()
 
 
+def get_game_or_abort(game_id):
+    current_game = db.session.query(Game).get(game_id)
+
+    if not current_game:
+        abort(404)
+
+
 @app.route('/')
 def index():
     return render_template('static/index.html')
@@ -24,10 +31,7 @@ def index():
 
 @app.route('/game/<game_id>')
 def game(game_id):
-    current_game = db.session.query(Game).get(game_id)
-
-    if not current_game:
-        abort(404)
+    current_game = get_game_or_abort(game_id)
     if not current_game.current_round:
         redirect(url_for('results', game_id), 303)
 
@@ -70,4 +74,6 @@ def game(game_id):
 
 @app.route('/results/<game_id>')
 def results(game_id):
-    return render_template('static/results.html')
+    current_game = get_game_or_abort(game_id)
+
+    return render_template('static/results.html', current_game)
