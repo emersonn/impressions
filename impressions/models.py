@@ -68,9 +68,12 @@ class Round(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     impression = db.Column(db.String(420))
+
     images = db.relationship(
         'Image',
         secondary=round_image,
         backref=db.backref('round', lazy='dynamic')
     )
+
     voter = db.Column(db.Integer, db.ForeignKey('user.id'))
+    winner = db.Column(db.Integer, db.ForeignKey('user.id'))
