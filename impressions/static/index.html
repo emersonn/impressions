@@ -60,8 +60,8 @@
 
     <div id="gamebody">
       <h1>Add players to your game, pick a category, then hit start!</h1>
+      <form action="/" method="POST">
       <div id="players">
-        <form action="/" method="POST">
         <ul id="playerlist">
           <li id="addplayerli">
             <button id="addplayer" type="button" class="btn btn-lg btn-primary">+</button>
@@ -71,9 +71,10 @@
         </form>
       </div>
       <div id="startfooter">
-        <label>Image category: <input style="color: #585858" type="text" id="imagecategory" value="Enter a category" onfocus="value=''; style=''"/></label>
+        <label>Image category: <input name="category" style="color: #585858" type="text" id="imagecategory" value="Enter a category" onfocus="value=''; style=''"/></label>
         <button id="start" class="btn btn-lg btn-primary" type="button">Start game!</button>
       </div>
+      </form>
     </div>
       <!--
       <div id="game">
