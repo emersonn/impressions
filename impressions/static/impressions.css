@@ -1,0 +1,78 @@
+/*body {
+  padding-top: 50px;
+}*/
+
+/*
+#gamebody, #gamebody div {
+	border: 2px black solid;
+}
+*/
+
+#gamebody , #gamebody > * {
+	clear: both;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+/*#gamebody > div {
+	float: left;
+}*/
+
+#players {
+	width: 75%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 2em;
+}
+
+ul#playerlist {
+	list-style-type: none;
+	padding-left: 0;
+	margin-bottom: 0;
+}
+
+ul#playerlist li div * {
+	display: inline-block;
+}
+
+ul#playerlist li {
+	border: 1px black solid;
+	text-align: left;
+	margin: 0.5em;
+}
+
+.player {
+	width: 100%;
+}
+
+.playername {
+	border: 1px black solid;
+}
+
+#newplayername, .playername {
+	width: 75%;
+}
+
+ul#playerlist li div * {
+	float: left;
+	margin: 1em;
+}
+
+ul#playerlist li div {
+	overflow: hidden;
+}
+
+.remove, #addplayer {
+	width: 10%;
+}
+
+#startfooter {
+	font-size: 24pt;
+	font-family: Helvetica;
+	margin: 1em;
+}
+
+#imagecategory {
+	text-align: center;
+}
