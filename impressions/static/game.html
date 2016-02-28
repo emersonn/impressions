@@ -50,7 +50,7 @@
         <div id="navbar" class="collapse navbar-collapse">
           <!-- <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-           
+
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           -->
@@ -70,7 +70,7 @@
           <h1>Players</h1>
           <ul id="playerslist">
             <li>
-              <span class="listname">Jack</span> 
+              <span class="listname">Jack</span>
               <span class="points">(<span class="score">5</span> Points)</span>
               <span style="display: none" class="submittedtext">SUBMITTED</span>
               <div class="captioninput">
@@ -83,7 +83,7 @@
         <button class="btn btn-lg btn-primary" type="button" id="judgebutton">Judge!</button>
       </div>
 
-      <div id="judging">
+      <div style="display: none" id="judging">
         <h1>Click a name to vote! The image was:</h1>
         <div id="judgingimage">
           <img src="bananas.jpeg" alt="impression" />
@@ -92,19 +92,14 @@
         <hr />
 
         <form action="/" method="post">
-        <div class="playersubmission">
-          <label>Jack: <em>5</em> pts <input type="radio" value="Jack" name="playervote" /></label>
-          <q class="playercaption">
-            I love bananas!
-          </q>
-        </div>
-
-         <div class="playersubmission">
-          <label>Raquel: <em>10</em> pts <input type="radio" value="Raquel" name="playervote" /></label>
-          <q class="playercaption">
-            That is a dank banana!
-          </q>
-        </div>
+        {% for player in players %}
+          <div class="playersubmission">
+            <label>{{ player.name }}: <em>{{ player.points}}</em> pts <input type="radio" value="Jack" name="playervote" /></label>
+            <q class="playercaption">
+              Poop. {{ player.id }}
+            </q>
+          </div>
+        {% endfor %}
         <button type="button" class="btn btn-lg btn-primary" id="vote">Vote!</button>
         </form>
       </div>
