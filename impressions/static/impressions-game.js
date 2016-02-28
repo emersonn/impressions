@@ -9,6 +9,7 @@ window.onload = function() {
 	}
 
 	document.getElementById("vote").onclick = submitVote;
+	document.querySelector("li button").onclick = submitCaption;
 };
 
 function updateVotedPlayer() {
@@ -21,6 +22,13 @@ function updateVotedPlayer() {
 	if(! parentDiv.classList.contains("votedplayer")) {
 		parentDiv.classList.add("votedplayer");
 	}
+}
+
+function submitCaption() {
+	// var playerName = this.parentNode.querySelector(".listname").innerHTML;
+	this.parentNode.parentNode.querySelector(".captioninput").style.display = "none";
+	this.parentNode.parentNode.querySelector(".submittedtext").style.display = "";
+	this.parentNode.parentNode.style.backgroundColor = "#bbbbbb";
 }
 
 function submitVote() {
