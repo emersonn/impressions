@@ -35,9 +35,28 @@ class Game(db.Model):
         backref=db.backref('game', lazy='dynamic')
     )
 
+    rounds = db.relationship(
+        'Round',
+        secondary=game_round,
+        backref=db.backref('game', lazy='dynamic')
+    )
 
 game_user = db.Table(
     'game_player',
     db.Column('game_id', db.Integer, db.ForeignKey('game.id')),
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'))
 )
+
+game_round = db.Table(
+    'game_round',
+    db.Column('game_id', db.Integer, db.ForeignKey('game.id')),
+    db.Column('round_id', db.Integer, db.ForeignKey('round.id'))
+)
+
+
+class Round(db.Model):
+    __tablename__ = 'round'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    image = db.Column(db.String(420))
