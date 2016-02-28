@@ -23,6 +23,19 @@ class User(db.Model):
         return unicode(self.id)
 
 
+game_user = db.Table(
+    'game_player',
+    db.Column('game_id', db.Integer, db.ForeignKey('game.id')),
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'))
+)
+
+game_round = db.Table(
+    'game_round',
+    db.Column('game_id', db.Integer, db.ForeignKey('game.id')),
+    db.Column('round_id', db.Integer, db.ForeignKey('round.id'))
+)
+
+
 class Game(db.Model):
     __tablename__ = 'game'
 
@@ -42,16 +55,10 @@ class Game(db.Model):
         backref=db.backref('game', lazy='dynamic')
     )
 
-game_user = db.Table(
-    'game_player',
-    db.Column('game_id', db.Integer, db.ForeignKey('game.id')),
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id'))
-)
-
-game_round = db.Table(
-    'game_round',
-    db.Column('game_id', db.Integer, db.ForeignKey('game.id')),
-    db.Column('round_id', db.Integer, db.ForeignKey('round.id'))
+round_image = db.Table(
+    'round_image',
+    db.Column('round_id', db.Integer, db.ForeignKey('round.id')),
+    db.Column('image_id', db.Integer, db.ForeignKey('image.id'))
 )
 
 
@@ -67,9 +74,3 @@ class Round(db.Model):
         backref=db.backref('round', lazy='dynamic')
     )
     voter = db.Column(db.Integer, db.ForeignKey('user.id'))
-
-round_image = db.Table(
-    'round_image',
-    db.Column('round_id', db.Integer, db.ForeignKey('round.id')),
-    db.Column('image_id', db.Integer, db.ForeignKey('image.id'))
-)
