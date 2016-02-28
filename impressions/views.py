@@ -78,13 +78,17 @@ def index():
 
             db.session.add(current_round)
             current_game.rounds.append(current_round)
-        current_game.current_round = current_game.rounds[0].id
+            # print(current_game.rounds)
 
         db.session.add(current_game)
         db.session.commit()
 
+        current_game.current_round = current_game.rounds[0].id
+        db.session.commit()
+
         # print("Finished making a game.")
         return redirect(url_for('game', game_id=current_game.id))
+        # return redirect('/game/' + str(current_game.id))
     return render_template('index.html')
 
 
@@ -102,8 +106,10 @@ def game(game_id):
     """
 
     current_game = get_game_or_abort(game_id)
-    if not current_game.current_round:
-        return redirect(url_for('results', game_id), 303)
+    print(current_game.rounds)
+    print(current_game.current_round)
+    if current_game.current_round is None:
+        return redirect(url_for('results', game_id=game_id), 303)
 
     if request.method == 'POST':
         # TODO(There should be a lot more cases for safety, and security.)
@@ -143,13 +149,17 @@ def game(game_id):
         db.session.commit()
 
     current_round = current_game.current_round
-    return render_template('static/game.html', {
-        'round': current_round, 'game': current_game
-    })
+    return render_template(
+        'game.html',
+        round=current_round,
+        game=current_game
+    )
 
 
 @app.route('/results/<game_id>')
 def results(game_id):
+    return "poop"
+
     current_game = get_game_or_abort(game_id)
 
     return render_template('static/results.html', current_game)
