@@ -1,5 +1,7 @@
 flask
 
+requests
+
 sqlalchemy
 mysql-python
 flask-sqlalchemy
