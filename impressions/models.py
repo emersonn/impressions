@@ -49,6 +49,7 @@ class Game(db.Model):
         backref=db.backref('game', lazy='dynamic')
     )
 
+    current_round = db.Column(db.Integer, db.ForeignKey('round.id'))
     rounds = db.relationship(
         'Round',
         secondary=game_round,
