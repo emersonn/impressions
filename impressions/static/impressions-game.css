@@ -112,8 +112,20 @@ input[type=radio] {
 
 .votedplayer {
 	color: #3366ee;
-	text-decoration: underline;
+	font-size: 125%;
 }
+
+.votedplayer:before {
+	content: '- ';
+}
+
+.votedplayer:after {
+	content: ' -';
+}
+
+/*.votedplayer:after, .votedplayer:before {
+	font-size: 150%;
+}*/
 
 .playersubmission {
 	text-align: left;
@@ -136,4 +148,8 @@ button {
 #judgebutton {
 	border-radius: 0.2em;
 	font-size: 150%;
+}
+
+#nav {
+	position: static;
 }

@@ -99,3 +99,7 @@ li > button {
 	margin-left: 0.5em;
 	vertical-align: text-top;
 }
+
+#nav {
+	position: static;
+}
