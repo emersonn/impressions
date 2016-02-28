@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <!-- <link rel="icon" href="../../favicon.ico"> -->
 
-    <title>Impressions Setup</title>
+    <title>Impressions Game</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -18,7 +18,8 @@
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="impressions.css" rel="stylesheet">
+    <link href="impressions.css" rel="stylesheet" />
+    <link href="impressions-game.css" rel="stylesheet" />
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -30,7 +31,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script src="impressions-setup.js"></script>
+    <script src="impressions-game.js"></script>
   </head>
 
   <body>
@@ -49,45 +50,65 @@
         <div id="navbar" class="collapse navbar-collapse">
           <!-- <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-        
+           
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           -->
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
-    <div id="gamebody">
-      <h1>Add players to your game, pick a category, then hit start!</h1>
-      <form action="/" method="POST">
-      <div id="players">
-        <ul id="playerlist">
-          <li id="addplayerli">
-            <button id="addplayer" type="button" class="btn btn-lg btn-primary">+</button>
-            <input style="color: #585858" type="text" id="addplayername" value="Player name" onfocus="value=''; style=''"/>
-          </li>
-        </ul>
+    <div id="gamecontainer">
+      <div id="submissions">
+        <div id="submissionimage">
+          <h1>Round {{ round }}! Make a caption of this image:</h1>
+          <img src="bananas.jpeg" alt="impression" />
+        </div>
+        <div id="players">
+          <h1>Players</h1>
+          <ul id="playerslist">
+            <li>
+              <span class="listname">Jack</span> 
+              <span class="points">(<span class="score">5</span> Points)</span>
+              <span style="display: none" class="submittedtext">SUBMITTED</span>
+              <div class="captioninput">
+              <textarea id="upload-jack"></textarea>
+              <button type="button" class="btn btn-lg btn-primary"id="submit-jack">Submit</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <button class="btn btn-lg btn-primary" type="button" id="judgebutton">Judge!</button>
+      </div>
+
+      <div id="judging">
+        <h1>Click a name to vote! The image was:</h1>
+        <div id="judgingimage">
+          <img src="bananas.jpeg" alt="impression" />
+        </div>
+
+        <hr />
+
+        <form action="/" method="post">
+        <div class="playersubmission">
+          <label>Jack: <em>5</em> pts <input type="radio" value="Jack" name="playervote" /></label>
+          <q class="playercaption">
+            I love bananas!
+          </q>
+        </div>
+
+         <div class="playersubmission">
+          <label>Raquel: <em>10</em> pts <input type="radio" value="Raquel" name="playervote" /></label>
+          <q class="playercaption">
+            That is a dank banana!
+          </q>
+        </div>
+        <button type="button" class="btn btn-lg btn-primary" id="vote">Vote!</button>
         </form>
       </div>
-      <div id="startfooter">
-        <label>Image category: <input name="category" style="color: #585858" type="text" id="imagecategory" value="Enter a category" onfocus="value=''; style=''"/></label>
-        <button id="start" class="btn btn-lg btn-primary" type="button">Start game!</button>
-      </div>
-      </form>
     </div>
-      <!--
-      <div id="game">
-        <div id="imageload">
-          <input type="file" id="imageinput" />
-        </div>
-        <div id="image">
-        </div>
-      </div>
-      -->
-
-    <!-- </div><!-- /.container -->
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

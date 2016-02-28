@@ -1,9 +1,9 @@
 var numPlayers = 0;
 
 window.onload = function() {
-	var body = document.querySelector("body");
-	var padding = parseInt(window.getComputedStyle(document.querySelector("nav")).height);
-	body.style.paddingTop = padding + 5 + "px";
+	// var body = document.querySelector("body");
+	// var padding = parseInt(window.getComputedStyle(document.querySelector("nav")).height);
+	// body.style.paddingTop = padding + 5 + "px";
 	document.getElementById("addplayer").onclick = addNewPlayer;
 	document.getElementById("start").onclick = submitForm;
 };
