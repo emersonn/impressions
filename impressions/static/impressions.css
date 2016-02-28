@@ -37,9 +37,14 @@ ul#playerlist li div * {
 }
 
 ul#playerlist li {
-	border: 1px black solid;
 	text-align: left;
 	margin: 0.5em;
+	font-size: 16pt;
+	font-family: Helvetica;
+}
+
+ul#playerlist li * {
+	vertical-align: middle;
 }
 
 .player {
@@ -47,32 +52,50 @@ ul#playerlist li {
 }
 
 .playername {
-	border: 1px black solid;
+	/*border: 1px black solid;*/
+	font-size: 150%;
+	font-weight: bold;
+	margin-left: 0.5em;
 }
 
 #newplayername, .playername {
 	width: 75%;
 }
 
-ul#playerlist li div * {
-	float: left;
-	margin: 1em;
-}
-
 ul#playerlist li div {
 	overflow: hidden;
 }
 
-.remove, #addplayer {
+.addplayerli .btn {
+	font-size: 150%;
+	font-family: monospace;
+	margin: 0.25em;
 	width: 10%;
+	text-align: center;
+	padding: 0px;
+}
+
+li > button {
+	vertical-align: text-top;
 }
 
 #startfooter {
+	border-top: 2px dashed black;
 	font-size: 24pt;
 	font-family: Helvetica;
 	margin: 1em;
+	padding-top: 1em;
+}
+
+#startfooter * {
+	height: 100%;
 }
 
 #imagecategory {
 	text-align: center;
+}
+
+#start {
+	margin-left: 0.5em;
+	vertical-align: text-top;
 }

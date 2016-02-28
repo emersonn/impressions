@@ -72,16 +72,16 @@
               <span class="listname">Jack</span> 
               <span class="points"><span class="score">5</span> Points</span>
               <textarea id="upload-jack"></textarea>
-              <button id="submit-jack">Submit</button>
+              <button type="button" class="btn btn-lg btn-primary"id="submit-jack">Submit</button>
             </li>
           </ul>
         </div>
-        <button id="judgebutton">Judge!</button>
+        <button class="btn btn-lg btn-primary" type="button" id="judgebutton">Judge!</button>
       </div>
 
       <div id="judging">
+        <h1>Click a name to vote! The image was:</h1>
         <div id="judgingimage">
-          <h1>The image was:</h1>
           <img src="bananas.jpeg" alt="impression" />
         </div>
 
@@ -89,15 +89,20 @@
 
         <div class="playersubmission">
           <label>Jack: <em>5</em> pts <input type="radio" name="playervote" /></label>
-          <div class="playercaption">
-            That is a great banana!
-          </div>
+          <q class="playercaption">
+            I love bananas!
+          </q>
         </div>
-        <button id="vote">Vote!</button>
+
+         <div class="playersubmission">
+          <label>Raquel: <em>10</em> pts <input type="radio" name="playervote" /></label>
+          <q class="playercaption">
+            That is a dank banana!
+          </q>
+        </div>
+        <button type="button" class="btn btn-lg btn-primary" id="vote">Vote!</button>
       </div>
     </div>
-
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

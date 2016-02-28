@@ -30,7 +30,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script src="impressions.js"></script>
+    <script src="impressions-setup.js"></script>
   </head>
 
   <body>
@@ -61,18 +61,18 @@
     <div id="gamebody">
       <h1>Add players to your game, pick a category, then hit start!</h1>
       <div id="players">
+        <form action="/" method="POST">
         <ul id="playerlist">
           <li id="addplayerli">
-            <div id="addplayerdiv">
-              <button id="addplayer">+</button>
-              <input type="text" id="addplayername" />
-            </div>
+            <button id="addplayer" type="button" class="btn btn-lg btn-primary">+</button>
+            <input style="color: #585858" type="text" id="addplayername" value="Player name" onfocus="value=''; style=''"/>
           </li>
         </ul>
+        </form>
       </div>
       <div id="startfooter">
-        <label>Image category: <input type="text" id="imagecategory" /></label>
-        <button id="start">Start game!</button>
+        <label>Image category: <input style="color: #585858" type="text" id="imagecategory" value="Enter a category" onfocus="value=''; style=''"/></label>
+        <button id="start" class="btn btn-lg btn-primary" type="button">Start game!</button>
       </div>
     </div>
       <!--

@@ -22,7 +22,7 @@ h1, h2 {
 #players {
 	width: 90%;
 	margin-top: 1em;
-	margin-bottom: 2em;
+	margin-bottom: 1em;
 }
 
 #submissionimage {
@@ -59,7 +59,8 @@ li {
 
 textarea {
 	width: 100%;
-	margin: 0.25em;
+	margin-top: 0.25em;
+	margin-bottom: 0.25em;
 }
 
 ul {
@@ -80,13 +81,9 @@ ul {
 	margin-top: 0;
 }
 
-#judging > * {
-	text-align: center;
-}
-
 .playercaption {
 	border: 2px solid black;
-	width: 80%;
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: left;
@@ -107,4 +104,36 @@ ul {
 hr {
 	border-color: black;
 	height: 0.5em;
+}
+
+input[type=radio] {
+	display: none;
+}
+
+.votedplayer {
+	color: #3366ee;
+	text-decoration: underline;
+}
+
+.playersubmission {
+	text-align: left;
+	width: 80%;
+	margin: 1em;
+}
+
+.playersubmission label {
+	margin-left: 5%;
+}
+
+q {
+	display: block;
+}
+
+button {
+	font-size: 150%;
+}
+
+#judgebutton {
+	border-radius: 0.2em;
+	font-size: 150%;
 }
