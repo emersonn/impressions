@@ -67,24 +67,6 @@ def game(game_id):
         'round': current_round, 'game': current_game
     })
 
-"""
-@app.route('/game/<game_id>/<round_id>')
-def round(game_id, round_id):
-    current_game = db.session.query(Game).get(game_id)
-    if not current_game:
-        abort(404)
-    if not current_game.current_round:
-        redirect(url_for('results', game_id), 303)
-
-    current_round = db.session.query(Round).get(round_id)
-    if not current_round:
-        abort(404)
-    if current_game.current_round != current_round:
-    # if this is a post request to submit the winner
-    # otherwise return the request
-    pass
-"""
-
 
 @app.route('/results/<game_id>')
 def results(game_id):
