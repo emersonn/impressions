@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <!-- <link rel="icon" href="../../favicon.ico"> -->
 
-    <title>Impressions Setup</title>
+    <title>Impressions Game</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -18,7 +18,8 @@
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="impressions.css" rel="stylesheet">
+    <link href="impressions.css" rel="stylesheet" />
+    <link href="impressions-game.css" rel="stylesheet" />
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -30,7 +31,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script src="impressions.js"></script>
+    <script src="impressions-game.js"></script>
   </head>
 
   <body>
@@ -58,34 +59,44 @@
       </div>
     </nav>
 
-    <div id="gamebody">
-      <h1>Add players to your game, pick a category, then hit start!</h1>
-      <div id="players">
-        <ul id="playerlist">
-          <li id="addplayerli">
-            <div id="addplayerdiv">
-              <button id="addplayer">+</button>
-              <input type="text" id="addplayername" />
-            </div>
-          </li>
-        </ul>
+    <div id="gamecontainer">
+      <div id="submissions">
+        <div id="submissionimage">
+          <h1>Make a caption of this image:</h1>
+          <img src="bananas.jpeg" alt="impression" />
+        </div>
+        <div id="players">
+          <h1>Players</h1>
+          <ul id="playerslist">
+            <li>
+              <span class="listname">Jack</span> 
+              <span class="points"><span class="score">5</span> Points</span>
+              <textarea id="upload-jack"></textarea>
+              <button id="submit-jack">Submit</button>
+            </li>
+          </ul>
+        </div>
+        <button id="judgebutton">Judge!</button>
       </div>
-      <div id="startfooter">
-        <label>Image category: <input type="text" id="imagecategory" /></label>
-        <button id="start">Start game!</button>
+
+      <div id="judging">
+        <div id="judgingimage">
+          <h1>The image was:</h1>
+          <img src="bananas.jpeg" alt="impression" />
+        </div>
+
+        <hr />
+
+        <div class="playersubmission">
+          <label>Jack: <em>5</em> pts <input type="radio" name="playervote" /></label>
+          <div class="playercaption">
+            That is a great banana!
+          </div>
+        </div>
+        <button id="vote">Vote!</button>
       </div>
     </div>
-      <!--
-      <div id="game">
-        <div id="imageload">
-          <input type="file" id="imageinput" />
-        </div>
-        <div id="image">
-        </div>
-      </div>
-      -->
 
-    <!-- </div><!-- /.container -->
 
 
     <!-- Bootstrap core JavaScript
