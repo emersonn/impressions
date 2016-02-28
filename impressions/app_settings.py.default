@@ -5,3 +5,6 @@ SECRET_KEY = '420'
 """Database Settings"""
 SQLALCHEMY_DATABASE_URI = 'mysql://root@localhost/impressions'
 SQLALCHEMY_TRACK_MODIFICATIONS = True
+
+"""Azure Settings"""
+AZURE_KEY = ""
