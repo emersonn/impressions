@@ -25,10 +25,12 @@ def index():
 @app.route('/game/<game_id>')
 def game(game_id):
     current_game = db.session.query(Game).get(game_id)
+
     if not current_game:
         abort(404)
     if not current_game.current_round:
         redirect(url_for('results', game_id), 303)
+
     if request.method == 'POST':
         # TODO(There should be a lot more cases for safety, and security.)
         if 'round_id' not in request.form or 'winner_id' not in request.form:
@@ -38,13 +40,15 @@ def game(game_id):
             db.session
             .query(Round).get(request.form['round_id'])
         )
+
         if not current_round:
             abort(404)
 
         winner_id = request.form['winner_id']
         winner = db.session.query(User).get(winner_id)
+
         if not winner:
-            abort(406)
+            abort(404)
 
         current_round.winner = winner
 
@@ -59,7 +63,9 @@ def game(game_id):
         )
 
     current_round = current_game.current_round
-    return render_template('static/game.html')
+    return render_template('static/game.html', {
+        'round': current_round, 'game': current_game
+    })
 
 """
 @app.route('/game/<game_id>/<round_id>')
