@@ -1,3 +1,5 @@
+import datetime
+
 from flask import abort
 from flask import redirect
 from flask import render_template
@@ -36,15 +38,32 @@ def get_game_or_abort(game_id):
     return current_game
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
     """Index page of the website."""
 
     # TODO(Make the game)
     if request.method == 'POST':
-        pass
+        # print("This is the data.")
+        # print(request.get_data())
+        # print(request.form)
+        category = request.form['category']
+        players = []
 
-    return render_template('static/index.html')
+        current_game = Game(start=datetime.datetime.now())
+
+        for key in request.form.keys():
+            if key is not 'category':
+                current_player = User(name=request.form[key], points=0)
+                current_game.players.append(current_player)
+
+                players.append(current_player)
+                db.session.add(current_player)
+        db.session.add(current_game)
+
+        # Rounds, current_round, and redirect
+
+    return render_template('index.html')
 
 
 @app.route('/game/<game_id>')
@@ -84,6 +103,7 @@ def game(game_id):
             abort(404)
 
         current_round.winner = winner
+        winner.points += 1
 
         if (
             current_game.index(current_round) + 1 >=
@@ -94,6 +114,11 @@ def game(game_id):
         current_game.current_round = (
             current_game.rounds[current_game.index(current_round) + 1]
         )
+
+        db.session.add(current_game)
+        db.session.add(winner)
+        db.session.add(current_round)
+        db.session.commit()
 
     current_round = current_game.current_round
     return render_template('static/game.html', {
