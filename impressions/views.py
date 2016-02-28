@@ -31,23 +31,32 @@ def game(game_id):
         redirect(url_for('results', game_id), 303)
     if request.method == 'POST':
         # TODO(There should be a lot more cases for safety, and security.)
-        if 'round_id' in request.form and 'winner_id' in request.form:
-            current_round = (
-                db.session
-                .query(Round).get(request.form['round_id'])
-            )
-            if not current_round:
-                abort(404)
-            # TODO(Should check whether the winner ID exists in both ways)
-            winner_id = request.form['winner_id']
-            current_round.winner = current_game.players[winner_id]
-
-            # current_round needs .indexFor()
-            if current_game.current_round + 1 >= len(current_game.rounds):
-                redirect(url_for('results', game_id), 303)
-            current_game.current_round = pass
-        else:
+        if 'round_id' not in request.form or 'winner_id' not in request.form:
             abort(406)
+
+        current_round = (
+            db.session
+            .query(Round).get(request.form['round_id'])
+        )
+        if not current_round:
+            abort(404)
+
+        winner_id = request.form['winner_id']
+        winner = db.session.query(User).get(winner_id)
+        if not winner:
+            abort(406)
+
+        current_round.winner = winner
+
+        if (
+            current_game.index(current_round) + 1 >=
+            len(current_game.rounds)
+        ):
+            current_game.current_round = None
+            redirect(url_for('results', game_id), 303)
+        current_game.current_round = (
+            current_game.rounds[current_game.index(current_round) + 1]
+        )
 
     current_round = current_game.current_round
     return render_template('static/game.html')
