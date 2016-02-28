@@ -73,11 +73,3 @@ round_image = db.Table(
     db.Column('round_id', db.Integer, db.ForeignKey('round.id')),
     db.Column('image_id', db.Integer, db.ForeignKey('image.id'))
 )
-
-
-class Image(db.Model):
-    __tablename__ = 'image'
-
-    id = db.Column(db.Integer, primary_key=True)
-
-    li
