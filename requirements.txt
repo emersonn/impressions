@@ -1,6 +1,7 @@
 flask
 
 sqlalchemy
+mysqldb
 flask-sqlalchemy
 
 flask-restful
@@ -8,4 +9,3 @@ flask-restful
 nose
 coverage
 mock
-
