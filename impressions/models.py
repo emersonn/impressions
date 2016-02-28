@@ -20,3 +20,24 @@ class User(db.Model):
 
     def get_id(self):
         return unicode(self.id)
+
+
+class Game(db.Model):
+    __tablename__ = 'game'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    start = db.Column(db.DateTime)
+
+    players = db.relationship(
+        'User',
+        secondary=game_user,
+        backref=db.backref('game', lazy='dynamic')
+    )
+
+
+game_user = db.Table(
+    'game_player',
+    db.Column('game_id', db.Integer, db.ForeignKey('game.id')),
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'))
+)
