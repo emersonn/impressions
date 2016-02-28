@@ -52,11 +52,12 @@ function addNewPlayer() {
 	playerlist.insertBefore(newPlayerLi, document.getElementById("addplayerli"));
 
 	document.getElementById("addplayername").value = "";
-	
+
 	var nameInput = document.createElement("input");
 	nameInput.id = "input-player-" + playerName;
 	nameInput.type = "hidden";
 	nameInput.name = "names[player-" + playerName + "]";
+	nameInput.value = playerName;
 	document.querySelector("form").appendChild(nameInput);
 	numPlayers++;
 }
