@@ -18,8 +18,8 @@
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="impressions.css" rel="stylesheet" />
-    <link href="impressions-game.css" rel="stylesheet" />
+    <link href="/static/impressions.css" rel="stylesheet" />
+    <link href="/static/impressions-game.css" rel="stylesheet" />
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -31,7 +31,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script src="impressions-game.js"></script>
+    <script src="/static/impressions-game.js"></script>
   </head>
 
   <body>
@@ -63,13 +63,13 @@
       <div id="submissions">
         <div id="submissionimage">
           <h1>Make a caption of this image:</h1>
-          <img src="bananas.jpeg" alt="impression" />
+          <img src="/static/bananas.jpeg" alt="impression" />
         </div>
         <div id="players">
           <h1>Players</h1>
           <ul id="playerslist">
             <li>
-              <span class="listname">Jack</span> 
+              <span class="listname">Jack</span>
               <span class="points"><span class="score">5</span> Points</span>
               <textarea id="upload-jack"></textarea>
               <button type="button" class="btn btn-lg btn-primary"id="submit-jack">Submit</button>
@@ -82,7 +82,7 @@
       <div id="judging">
         <h1>Click a name to vote! The image was:</h1>
         <div id="judgingimage">
-          <img src="bananas.jpeg" alt="impression" />
+          <img src="/static/bananas.jpeg" alt="impression" />
         </div>
 
         <hr />
