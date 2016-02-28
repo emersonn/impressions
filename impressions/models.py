@@ -6,8 +6,9 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    username = db.Column(db.String(120), index=True, unique=True)
-    fb_uid = db.Column(db.String(120), index=True, unique=True)
+    name = db.Column(db.String(120))
+    picture = db.Column(db.String(420))
+    points = db.Column(db.Integer)
 
     def is_authenticated(self):
         return True
@@ -59,4 +60,24 @@ class Round(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    image = db.Column(db.String(420))
+    impression = db.Column(db.String(420))
+    images = db.relationship(
+        'Image',
+        secondary=round_image,
+        backref=db.backref('round', lazy='dynamic')
+    )
+    voter = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+round_image = db.Table(
+    'round_image',
+    db.Column('round_id', db.Integer, db.ForeignKey('round.id')),
+    db.Column('image_id', db.Integer, db.ForeignKey('image.id'))
+)
+
+
+class Image(db.Model):
+    __tablename__ = 'image'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    li
