@@ -4,8 +4,8 @@ from flask import render_template
 from flask import request
 from flask import url_for
 
-from chemy import app
-from chemy import db
+from impressions import app
+from impressions import db
 
 from models import Game
 from models import Round
@@ -18,19 +18,48 @@ def shutdown_session(exception=None):
 
 
 def get_game_or_abort(game_id):
+    """Gets the game corresponding to the given game_id.
+
+    Args:
+        game_id: int id for the game.
+            Aborts with 404 error if game does not exist.
+
+    Returns:
+        Game: Game in question.
+    """
+
     current_game = db.session.query(Game).get(game_id)
 
     if not current_game:
         abort(404)
 
+    return current_game
+
 
 @app.route('/')
 def index():
+    """Index page of the website."""
+
+    # TODO(Make the game)
+    if request.method == 'POST':
+        pass
+
     return render_template('static/index.html')
 
 
 @app.route('/game/<game_id>')
 def game(game_id):
+    """Game playing page of the website given the game_id.
+
+    Args:
+        game_id: Game to play with.
+            Aborts with 404 error if game does not exist.
+            Redirects if the game does not have a current round.
+
+    Returns:
+        Render of the game page.
+    """
+
     current_game = get_game_or_abort(game_id)
     if not current_game.current_round:
         redirect(url_for('results', game_id), 303)
