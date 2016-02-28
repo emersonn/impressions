@@ -1,4 +1,7 @@
 import datetime
+import json
+
+import requests
 
 from flask import abort
 from flask import redirect
@@ -13,6 +16,8 @@ from models import Game
 from models import Round
 from models import User
 
+BING_IMAGE = 'https://api.datamarket.azure.com/Bing/Search/v1/Image?$format=json&$top=10&Query=%27{query}%27'
+CREDENTIALS = 'Basic ' + (':%s' % app.config['AZURE_KEY']).encode('base64')[:-1]
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):
@@ -62,7 +67,24 @@ def index():
         db.session.add(current_game)
 
         # Rounds, current_round, and redirect
+        r = requests.get(BING_IMAGE.format(query=category), headers={'Authorization': CREDENTIALS})
+        response = json.loads(r.text)
+        results = response['d']['results']  # MediaUrl
 
+        for result in results[:5]:
+            current_round = Round(
+                impression=result['MediaUrl']
+            )
+
+            db.session.add(current_round)
+            current_game.rounds.append(current_round)
+        current_game.current_round = current_game.rounds[0].id
+
+        db.session.add(current_game)
+        db.session.commit()
+
+        # print("Finished making a game.")
+        return redirect(url_for('game', game_id=current_game.id))
     return render_template('index.html')
 
 
@@ -81,7 +103,7 @@ def game(game_id):
 
     current_game = get_game_or_abort(game_id)
     if not current_game.current_round:
-        redirect(url_for('results', game_id), 303)
+        return redirect(url_for('results', game_id), 303)
 
     if request.method == 'POST':
         # TODO(There should be a lot more cases for safety, and security.)
@@ -110,7 +132,7 @@ def game(game_id):
             len(current_game.rounds)
         ):
             current_game.current_round = None
-            redirect(url_for('results', game_id), 303)
+            return redirect(url_for('results', game_id), 303)
         current_game.current_round = (
             current_game.rounds[current_game.index(current_round) + 1]
         )
